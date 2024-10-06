@@ -4,16 +4,15 @@ const PugPlugin = require("pug-plugin");
 module.exports = {
   mode: 'production',
 
-  entry: {
-    index: "./src/index.pug",
-  },
-
   output: {
     path: path.join(__dirname, "dist"),
   },
 
   plugins: [
     new PugPlugin({
+      entry: {
+        index: "./src/index.pug",
+      },
       js: {
         filename: "js/[name].[contenthash:8].js",
       },
@@ -25,10 +24,6 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        test: /\.pug$/,
-        loader: PugPlugin.loader,
-      },
       {
         test: /\.css$/,
         use: ["css-loader", "postcss-loader"],
